@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d639daa697272f7a3bdb/maintainability)](https://codeclimate.com/github/appinteractive/orbit-challage-trains/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d639daa697272f7a3bdb/test_coverage)](https://codeclimate.com/github/appinteractive/orbit-challage-trains/test_coverage) 
-[![CircleCI](https://circleci.com/gh/appinteractive/orbit-challage-trains.svg?style=svg)](https://circleci.com/gh/appinteractive/orbit-challage-trains)
+[![CircleCI](https://circleci.com/gh/appinteractive/ChallangeMarsRover.svg?style=svg)](https://circleci.com/gh/appinteractive/ChallangeMarsRover)
 
 ## Description
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
