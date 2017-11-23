@@ -1,5 +1,6 @@
 # Challange - Mars Rovers 
 
+[![NPM](https://img.shields.io/npm/v/challange-mars-rovers.svg)](https://www.npmjs.com/package/challange-mars-rovers)
 [![Maintainability](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/maintainability)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/test_coverage)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/test_coverage)
 [![CircleCI](https://circleci.com/gh/appinteractive/ChallangeMarsRover.svg?style=svg)](https://circleci.com/gh/appinteractive/ChallangeMarsRover)
@@ -39,36 +40,54 @@ The output for each rover should be its final coordinates and heading. Input and
 ## Install
 
 ```
-$ npm install
+$ npm install challange-mars-rovers
 ```
-
 
 ## Usage
 
 ```js
-const Rover = require('./src/rover')
-
+const Rover = require('challange-mars-rovers')
+ 
 // deploy rovers to given start zone
 const Rover1 = new Rover(1, 2, 'N')
 const Rover2 = new Rover(3, 3, 'E')
-
-// move the rovers (inside an async method)
-await Rover1.command('LMLMLMLMM')
-await Rover2.command('MMRMMRMRRM')
-console.log(Rover1.getCoordinates()) // 1 3 N
-console.log(Rover1.getX()) // 1
-console.log(Rover1.getDirection()) // N
-console.log(Rover1.getCoordinates()) // 5 1 E
-
-// you can also use the promise notation
-Rover1.command('LMLMLMLMM').then(() => {
-  console.log(Rover1.getCoordinates()) // 5 1 E
+ 
+// you have two options
+/**************************************
+ * 1. using async functions
+ **************************************/
+ 
+async function doIt () {
+  // move the rovers (inside an async method)
+  await Rover1.command('LMLMLMLMM')
+  await Rover2.command('MMRMMRMRRM')
+ 
+  console.log('Rover1 x:', Rover1.getX()) // 1
+  console.log('Rover1 y:', Rover1.getY()) // 3
+  console.log('Rover1 direction:', Rover1.getDirection()) // N
+  console.log('Rover1 coordinates:', Rover1.getCoordinates()) // 1 3 N
+ 
+  console.log('Rover2 coordinates:', Rover2.getCoordinates()) // 5 1 E
+}
+doIt()
+ 
+ 
+/**************************************
+ * 2. use the promise notation
+ **************************************/
+ 
+// deploy rovers to given start zone
+const Rover3 = new Rover(3, 3, 'E')
+Rover3.command('MMRMMRMRRM').then(() => {
+  console.log('Rover3 coordinates:', Rover3.getCoordinates()) // 5 1 E
 })
 ```
 
 ## Test
 
 ```
+// inside the repository
+$ npm install 
 $ npm run test
 ```
 

@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.",
   "repository": "https://github.com/appinteractive/ChallageMarsRovers",
+  "main": "src/rover.js",
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec"
   },
   "engines": {
     "node": ">= 8.0.0"
   },
-  "author": "Grzegorz Leoniec <greg@app-interactive.de>",
+  "author": "Grzegorz Leoniec (@WillKnowThat)",
   "license": "MIT",
   "devDependencies": {
     "assert": "^1.4.1",
