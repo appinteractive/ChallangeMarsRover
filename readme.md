@@ -57,29 +57,27 @@ const Rover2 = new Rover(3, 3, 'E')
  * 1. using async functions
  **************************************/
  
-async function doIt () {
-  // move the rovers (inside an async method)
-  await Rover1.command('LMLMLMLMM')
-  await Rover2.command('MMRMMRMRRM')
- 
-  console.log('Rover1 x:', Rover1.getX()) // 1
-  console.log('Rover1 y:', Rover1.getY()) // 3
-  console.log('Rover1 direction:', Rover1.getDirection()) // N
-  console.log('Rover1 coordinates:', Rover1.getCoordinates()) // 1 3 N
- 
-  console.log('Rover2 coordinates:', Rover2.getCoordinates()) // 5 1 E
-}
-doIt()
+// move the rovers
+Rover1.command('LMLMLMLMM')
+Rover2.command('MMRMMRMRRM')
+
+console.log(`Rover1 x: ${Rover1.getX()}`) // 1
+console.log(`Rover1 y: ${Rover1.getY()}`) // 3
+console.log(`Rover1 direction: ${Rover1.getDirection()}`) // N
+console.log(`Rover1 coordinates: ${Rover1.getCoordinates()}`) // 1 3 N
+
+console.log(`Rover2 coordinates: ${Rover2.getCoordinates()}`) // 5 1 E
  
  
 /**************************************
  * 2. use the promise notation
  **************************************/
  
-// deploy rovers to given start zone
+// deploy rover to given start zone
 const Rover3 = new Rover(3, 3, 'E')
+// move rover
 Rover3.command('MMRMMRMRRM').then(() => {
-  console.log('Rover3 coordinates:', Rover3.getCoordinates()) // 5 1 E
+  console.log(`Rover3 coordinates:: ${Rover3.getCoordinates()}`) // 5 1 E
 })
 ```
 
