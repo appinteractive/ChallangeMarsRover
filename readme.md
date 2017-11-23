@@ -1,7 +1,7 @@
 # Challange - Mars Rovers 
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/fba6c77aff3085434969/maintainability)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/maintainability) 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fba6c77aff3085434969/test_coverage)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/maintainability)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/maintainability) 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/test_coverage)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/test_coverage)
 [![CircleCI](https://circleci.com/gh/appinteractive/ChallangeMarsRover.svg?style=svg)](https://circleci.com/gh/appinteractive/ChallangeMarsRover)
 
 ## Description
