@@ -93,4 +93,4 @@ $ npm run test
 
 ## License
 
-MIT © Grzegorz Leoniec <greg@app-interactive.de>
+MIT © Grzegorz Leoniec (@WillKnowThat)
