@@ -52,23 +52,31 @@ const Rover = require('challange-mars-rovers')
 const Rover1 = new Rover(1, 2, 'N')
 const Rover2 = new Rover(3, 3, 'E')
  
-// you have two options
+  
 /**************************************
+ *    you have two options
+ * 
  * 1. using async functions
  **************************************/
  
-// move the rovers
-Rover1.command('LMLMLMLMM')
-Rover2.command('MMRMMRMRRM')
-
-console.log(`Rover1 x: ${Rover1.getX()}`) // 1
-console.log(`Rover1 y: ${Rover1.getY()}`) // 3
-console.log(`Rover1 direction: ${Rover1.getDirection()}`) // N
-console.log(`Rover1 coordinates: ${Rover1.getCoordinates()}`) // 1 3 N
-
-console.log(`Rover2 coordinates: ${Rover2.getCoordinates()}`) // 5 1 E
+async function doIt () {
+  // move the rovers
+  await Rover1.command('LMLMLMLMM')
  
+  Rover1.getX() // output: 1
+  Rover1.getY() // output: 3
+  Rover1.getDirection() // output: N
+  Rover1.getCoordinates() // output: 1 3 N
+  console.log(`Rover1 Coordinates: ${Rover1.getCoordinates()}`)
  
+  await Rover2.command('MMRMMRMRRM')
+  // output: 5 1 E
+  Rover2.getCoordinates()
+  console.log(`Rover2 Coordinates: ${Rover2.getCoordinates()}`)
+}
+doIt()
+ 
+  
 /**************************************
  * 2. use the promise notation
  **************************************/
@@ -77,7 +85,9 @@ console.log(`Rover2 coordinates: ${Rover2.getCoordinates()}`) // 5 1 E
 const Rover3 = new Rover(3, 3, 'E')
 // move rover
 Rover3.command('MMRMMRMRRM').then(() => {
-  console.log(`Rover3 coordinates:: ${Rover3.getCoordinates()}`) // 5 1 E
+  // output: 5 1 E
+  Rover3.getCoordinates()
+  console.log(`Rover3 coordinates: ${Rover3.getCoordinates()}`)
 })
 ```
 
