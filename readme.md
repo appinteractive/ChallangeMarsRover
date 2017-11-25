@@ -64,17 +64,20 @@ RoverCommandMars.deploy()
     const rovers = RoverCommandMars.getRovers()
     console.log('RoverCommand - Rover1 coordinates:' + rovers['Rover 1'].getCoordinates()) // '1 3 N'
     console.log('RoverCommand - Rover2 coordinates:' + rovers['Rover 2'].getCoordinates()) // '5 1 E'
-  })
-     
+  })     
 
 /**************************************
  * 2. Using the Rovers directly
  **************************************/
  
-// deploy rovers to given start zone
-const Rover1 = new Rover(3, 3, 'E')
-Rover1.command('MMRMMRMRRM').then(() => {
-  console.log('Rover1 coordinates:', Rover1.getCoordinates()) // 5 1 E
+// deploy rover to given start zone
+const Rover3 = new Rover(3, 3, 'E')
+// move rover
+Rover3.command('MMRMMRMRRM').then(() => {
+  console.log(`Rover3 x: ${Rover3.getX()}`)                     // output: 5
+  console.log(`Rover3 y: ${Rover3.getY()}`)                     // output: 1
+  console.log(`Rover3 direction: ${Rover3.getDirection()}`)     // output: E
+  console.log(`Rover3 coordinates: ${Rover3.getCoordinates()}`) // output: 5 1 E
 })
 ```
 
@@ -88,4 +91,4 @@ $ npm run test
 
 ## License
 
-MIT © Grzegorz Leoniec <greg@app-interactive.de>
+MIT © Grzegorz Leoniec (@WillKnowThat)
