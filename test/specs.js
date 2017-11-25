@@ -1,6 +1,6 @@
 'use strict'
 
-const Rover = require('../src/rover')
+const {Rover, RoverCommand} = require('../src/index')
 
 const assert = require('assert')
 
@@ -76,5 +76,67 @@ describe('Rover - Process instructions and move Rover', () => {
     assert.equal(Rover2.getY(), 1)
     assert.equal(Rover2.getCoordinates(), '5 1 E')
     assert.equal(Rover2.getDirection(), 'E')
+  })
+})
+describe('RoverCommand - Deploy Rovers by Text File', () => {
+  it(`Throw TypeError on wrong initialization "new RoverCommand()"`, () => {
+    assert.throws(() => new RoverCommand(1, 1, 'C'), TypeError)
+  })
+  it(`Deploy by configuration file`, async () => {
+    const RoverCommandMars = new RoverCommand(__dirname + '/data/commands1.txt')
+    await RoverCommandMars.deploy()
+    const rovers = RoverCommandMars.getRovers()
+    assert.equal(typeof rovers, 'object')
+    assert.equal(rovers['Rover 1'].getCoordinates(), '1 2 N')
+    assert.equal(rovers['Rover 2'].getCoordinates(), '3 3 E')
+  })
+  it(`Deploy by configuration string`, async () => {
+    const RoverCommandMars = new RoverCommand('Rover 1;1 2 N;LMLMLMLMM\nRover 2;3 3 E;MMRMMRMRRM')
+    await RoverCommandMars.deploy()
+    const rovers = RoverCommandMars.getRovers()
+    assert.equal(typeof rovers, 'object')
+    assert.equal(rovers['Rover 1'].getCoordinates(), '1 2 N')
+    assert.equal(rovers['Rover 2'].getCoordinates(), '3 3 E')
+  })
+  it(`Deploy by configuration array`, async () => {
+    const RoverCommandMars = new RoverCommand([
+      'Rover 1;1 2 N;LMLMLMLMM',
+      'Rover 2;3 3 E;MMRMMRMRRM'
+    ])
+    await RoverCommandMars.deploy()
+    const rovers = RoverCommandMars.getRovers()
+    assert.equal(typeof rovers, 'object')
+    assert.equal(rovers['Rover 1'].getCoordinates(), '1 2 N')
+    assert.equal(rovers['Rover 2'].getCoordinates(), '3 3 E')
+  })
+  it(`Deploy by configuration array`, async () => {
+    const RoverCommandMars = new RoverCommand([
+      ['Rover 1', '1 2 N', 'LMLMLMLMM'],
+      ['Rover 2', '3 3 E', 'MMRMMRMRRM']
+    ])
+    await RoverCommandMars.deploy()
+    const rovers = RoverCommandMars.getRovers()
+    assert.equal(typeof rovers, 'object')
+    assert.equal(rovers['Rover 1'].getCoordinates(), '1 2 N')
+    assert.equal(rovers['Rover 2'].getCoordinates(), '3 3 E')
+  })
+  it(`Move Rovers'`, async () => {
+    const RoverCommandMars = new RoverCommand(__dirname + '/data/commands1.txt')
+    await RoverCommandMars.deploy()
+    await RoverCommandMars.move()
+
+    const rovers = RoverCommandMars.getRovers()
+    assert.equal(rovers['Rover 1'].getCoordinates(), '1 3 N')
+    assert.equal(rovers['Rover 2'].getCoordinates(), '5 1 E')
+  })
+  it(`_parse()'`, () => {
+    const RoverCommandMars = new RoverCommand(__dirname + '/data/commands1.txt')
+    assert.equal(RoverCommandMars.instructions[0].name, 'Rover 1')
+    assert.equal(RoverCommandMars.instructions[0].deployZone[0], 1)
+    assert.equal(RoverCommandMars.instructions[0].deployZone[1], 2)
+    assert.equal(RoverCommandMars.instructions[0].deployZone[2], 'N')
+    assert.equal(RoverCommandMars.instructions[1].deployZone[0], 3)
+    assert.equal(RoverCommandMars.instructions[1].deployZone[1], 3)
+    assert.equal(RoverCommandMars.instructions[1].deployZone[2], 'E')
   })
 })

@@ -1,9 +1,9 @@
 {
   "name": "challange-mars-rovers",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.",
   "repository": "https://github.com/appinteractive/ChallangeMarsRover",
-  "main": "src/rover.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec"
   },
@@ -16,5 +16,6 @@
     "assert": "^1.4.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1"
-  }
+  },
+  "dependencies": {}
 }

@@ -46,48 +46,38 @@ $ npm install challange-mars-rovers
 ## Usage
 
 ```js
-const Rover = require('challange-mars-rovers')
- 
-// deploy rovers to given start zone
-const Rover1 = new Rover(1, 2, 'N')
-const Rover2 = new Rover(3, 3, 'E')
- 
-  
+const {Rover, RoverCommand} = require('challange-mars-rovers')
+
 /**************************************
- *    you have two options
- * 
- * 1. using async functions
+ * 1. Using the Rover Command
  **************************************/
  
-async function doIt () {
-  // move the rovers
-  await Rover1.command('LMLMLMLMM')
- 
-  Rover1.getX() // output: 1
-  Rover1.getY() // output: 3
-  Rover1.getDirection() // output: N
-  Rover1.getCoordinates() // output: 1 3 N
-  console.log(`Rover1 Coordinates: ${Rover1.getCoordinates()}`)
- 
-  await Rover2.command('MMRMMRMRRM')
-  // output: 5 1 E
-  Rover2.getCoordinates()
-  console.log(`Rover2 Coordinates: ${Rover2.getCoordinates()}`)
-}
-doIt()
- 
-  
+// input rover data from text file or pass it as an array or string 
+// (see tests for more examples)
+const RoverCommandMars = new RoverCommand([
+  'Rover 1;1 2 N;LMLMLMLMM',
+  'Rover 2;3 3 E;MMRMMRMRRM'
+])
+RoverCommandMars.deploy()
+  .then(() => RoverCommandMars.move())
+  .then(() => {
+    const rovers = RoverCommandMars.getRovers()
+    console.log('RoverCommand - Rover1 coordinates:' + rovers['Rover 1'].getCoordinates()) // '1 3 N'
+    console.log('RoverCommand - Rover2 coordinates:' + rovers['Rover 2'].getCoordinates()) // '5 1 E'
+  })     
+
 /**************************************
- * 2. use the promise notation
+ * 2. Using the Rovers directly
  **************************************/
  
 // deploy rover to given start zone
 const Rover3 = new Rover(3, 3, 'E')
 // move rover
 Rover3.command('MMRMMRMRRM').then(() => {
-  // output: 5 1 E
-  Rover3.getCoordinates()
-  console.log(`Rover3 coordinates: ${Rover3.getCoordinates()}`)
+  console.log(`Rover3 x: ${Rover3.getX()}`)                     // output: 5
+  console.log(`Rover3 y: ${Rover3.getY()}`)                     // output: 1
+  console.log(`Rover3 direction: ${Rover3.getDirection()}`)     // output: E
+  console.log(`Rover3 coordinates: ${Rover3.getCoordinates()}`) // output: 5 1 E
 })
 ```
 
