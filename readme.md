@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/v/challange-mars-rovers.svg)](https://www.npmjs.com/package/challange-mars-rovers)
 [![Maintainability](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/maintainability)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/91172699e1d92f1b719d/test_coverage)](https://codeclimate.com/github/appinteractive/ChallangeMarsRover/test_coverage)
-[![CircleCI](https://circleci.com/gh/appinteractive/ChallangeMarsRover.svg?style=svg)](https://circleci.com/gh/appinteractive/ChallangeMarsRover)
+[![CircleCI](https://circleci.com/gh/appinteractive/ChallangeMarsRover.svg?style=shield)](https://circleci.com/gh/appinteractive/ChallangeMarsRover)
 
 ## Description
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
