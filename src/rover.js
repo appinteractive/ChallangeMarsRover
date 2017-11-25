@@ -1,16 +1,5 @@
-/**
- * helper function that works kind of like async.eachSeries
- * @param arr
- * @param iteratorFn
- * @returns {*}
- */
-function eachSeries(arr, iteratorFn) {
-  return arr.reduce(function(p, item) {
-    return p.then(function() {
-      return iteratorFn(item);
-    });
-  }, Promise.resolve());
-}
+
+const helpers = require('./helpers')
 
 /**
  * fixed direction (first letter of) North, East, South, West
@@ -49,7 +38,7 @@ const rover = class Rover {
    */
   command (instructionsString) {
     const instructions = instructionsString.split('')
-    return eachSeries(instructions, instruction => {
+    return helpers.eachSeries(instructions, instruction => {
       if (instruction === 'M') {
         return this.move()
       } else {

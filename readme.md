@@ -46,40 +46,35 @@ $ npm install challange-mars-rovers
 ## Usage
 
 ```js
-const Rover = require('challange-mars-rovers')
- 
-// deploy rovers to given start zone
-const Rover1 = new Rover(1, 2, 'N')
-const Rover2 = new Rover(3, 3, 'E')
- 
-// you have two options
+const {Rover, RoverCommand} = require('challange-mars-rovers')
+
 /**************************************
- * 1. using async functions
+ * 1. Using the Rover Command
  **************************************/
  
-async function doIt () {
-  // move the rovers (inside an async method)
-  await Rover1.command('LMLMLMLMM')
-  await Rover2.command('MMRMMRMRRM')
- 
-  console.log('Rover1 x:', Rover1.getX()) // 1
-  console.log('Rover1 y:', Rover1.getY()) // 3
-  console.log('Rover1 direction:', Rover1.getDirection()) // N
-  console.log('Rover1 coordinates:', Rover1.getCoordinates()) // 1 3 N
- 
-  console.log('Rover2 coordinates:', Rover2.getCoordinates()) // 5 1 E
-}
-doIt()
- 
- 
+// input rover data from text file or pass it as an array or string 
+// (see tests for more examples)
+const RoverCommandMars = new RoverCommand([
+  'Rover 1;1 2 N;LMLMLMLMM',
+  'Rover 2;3 3 E;MMRMMRMRRM'
+])
+RoverCommandMars.deploy()
+  .then(() => RoverCommandMars.move())
+  .then(() => {
+    const rovers = RoverCommandMars.getRovers()
+    console.log('RoverCommand - Rover1 coordinates:' + rovers['Rover 1'].getCoordinates()) // '1 3 N'
+    console.log('RoverCommand - Rover2 coordinates:' + rovers['Rover 2'].getCoordinates()) // '5 1 E'
+  })
+     
+
 /**************************************
- * 2. use the promise notation
+ * 2. Using the Rovers directly
  **************************************/
  
 // deploy rovers to given start zone
-const Rover3 = new Rover(3, 3, 'E')
-Rover3.command('MMRMMRMRRM').then(() => {
-  console.log('Rover3 coordinates:', Rover3.getCoordinates()) // 5 1 E
+const Rover1 = new Rover(3, 3, 'E')
+Rover1.command('MMRMMRMRRM').then(() => {
+  console.log('Rover1 coordinates:', Rover1.getCoordinates()) // 5 1 E
 })
 ```
 
